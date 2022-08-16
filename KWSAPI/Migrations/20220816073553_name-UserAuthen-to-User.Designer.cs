@@ -3,6 +3,7 @@ using KWS.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KWSAPI.Migrations
 {
     [DbContext(typeof(KWSDBContext))]
-    partial class KWSDBContextModelSnapshot : ModelSnapshot
+    [Migration("20220816073553_name-UserAuthen-to-User")]
+    partial class nameUserAuthentoUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

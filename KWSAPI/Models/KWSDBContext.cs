@@ -3,13 +3,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace KWS.Models
 {
-    public class KWSDBContext:DbContext, IKWSDBContext
-    {
-        public KWSDBContext(DbContextOptions <KWSDBContext> options):base(options)
-        {
+  public class KWSDBContext : DbContext, IKWSDBContext
+  {
+	public KWSDBContext(DbContextOptions<KWSDBContext> options) : base(options)
+	{
 
-        }
-        public DbSet<MemberMaster> MemberMasters { get ; set; }
-        public DbSet<UserAuthen> UserAuthens { get; set; }
-    }
+	}
+	public DbSet<MemberMaster> MemberMasters { get; set; }
+	public DbSet<UserAuthen> User { get; set; }
+  }
 }
