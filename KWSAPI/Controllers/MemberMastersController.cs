@@ -11,93 +11,92 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace KWSAPI.Controllers
 {
-  [Authorize]
-  [Route("api/[controller]")]
-  [ApiController]
-  
-  public class MemberMastersController : ControllerBase
-  {
-	private readonly KWSDBContext _context;
+    [Authorize]
+    [Route("api/[controller]")]
+    [ApiController]
+    public class MemberMastersController : ControllerBase
+    {
+        private readonly KWSDBContext _context;
 
-	public MemberMastersController(KWSDBContext context)
-	{
-	  _context = context;
-	} 
+        public MemberMastersController(KWSDBContext context)
+        {
+            _context = context;
+        }
 
-	[HttpGet("GetList")]
-	public async Task<ActionResult<IEnumerable<MemberMaster>>> GetMemberMasters()
-	{
-	  return await _context.MemberMasters.ToListAsync();
-	}
+        [HttpGet("GetList")]
+        public async Task<ActionResult<IEnumerable<MemberMaster>>> GetMemberMasters()
+        {
+            return await _context.MemberMasters.ToListAsync();
+        }
 
-	[HttpGet("GetById/{id}")]
-	public async Task<ActionResult<MemberMaster>> GetMemberMaster(int id)
-	{
-	  var memberMaster = await _context.MemberMasters.FindAsync(id);
+        [HttpGet("GetById/{id}")]
+        public async Task<ActionResult<MemberMaster>> GetMemberMaster(int id)
+        {
+            var memberMaster = await _context.MemberMasters.FindAsync(id);
 
-	  if (memberMaster == null)
-	  {
-		return NotFound();
-	  }
+            if (memberMaster == null)
+            {
+                return NotFound();
+            }
 
-	  return memberMaster;
-	}
+            return memberMaster;
+        }
 
-	[HttpPut("Update/{id}")]
-	public async Task<IActionResult> PutMemberMaster(int id, MemberMaster memberMaster)
-	{
-	  if (id != memberMaster.Id)
-	  {
-		return BadRequest();
-	  }
+        [HttpPut("Update/{id}")]
+        public async Task<IActionResult> PutMemberMaster(int id, MemberMaster memberMaster)
+        {
+            if (id != memberMaster.Id)
+            {
+                return BadRequest();
+            }
 
-	  _context.Entry(memberMaster).State = EntityState.Modified;
+            _context.Entry(memberMaster).State = EntityState.Modified;
 
-	  try
-	  {
-		await _context.SaveChangesAsync();
-	  }
-	  catch (DbUpdateConcurrencyException)
-	  {
-		if (!MemberMasterExists(id))
-		{
-		  return NotFound();
-		}
-		else
-		{
-		  throw;
-		}
-	  }
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!MemberMasterExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
 
-	  return NoContent();
-	}
-	[HttpPost("Create")]
-	public async Task<ActionResult<MemberMaster>> PostMemberMaster(MemberMaster memberMaster)
-	{
-	  _context.MemberMasters.Add(memberMaster);
-	  await _context.SaveChangesAsync();
+            return NoContent();
+        }
+        [HttpPost("Create")]
+        public async Task<ActionResult<MemberMaster>> PostMemberMaster(MemberMaster memberMaster)
+        {
+            _context.MemberMasters.Add(memberMaster);
+            await _context.SaveChangesAsync();
 
-	  return CreatedAtAction("GetMemberMaster", new { id = memberMaster.Id }, memberMaster);
-	}
+            return CreatedAtAction("GetMemberMaster", new { id = memberMaster.Id }, memberMaster);
+        }
 
-	[HttpDelete("Delete/{id}")]
-	public async Task<IActionResult> DeleteMemberMaster(int id)
-	{
-	  var memberMaster = await _context.MemberMasters.FindAsync(id);
-	  if (memberMaster == null)
-	  {
-		return NotFound();
-	  }
+        [HttpDelete("Delete/{id}")]
+        public async Task<IActionResult> DeleteMemberMaster(int id)
+        {
+            var memberMaster = await _context.MemberMasters.FindAsync(id);
+            if (memberMaster == null)
+            {
+                return NotFound();
+            }
 
-	  _context.MemberMasters.Remove(memberMaster);
-	  await _context.SaveChangesAsync();
+            _context.MemberMasters.Remove(memberMaster);
+            await _context.SaveChangesAsync();
 
-	  return NoContent();
-	}
+            return NoContent();
+        }
 
-	private bool MemberMasterExists(int id)
-	{
-	  return _context.MemberMasters.Any(e => e.Id == id);
-	}
-  }
+        private bool MemberMasterExists(int id)
+        {
+            return _context.MemberMasters.Any(e => e.Id == id);
+        }
+    }
 }
