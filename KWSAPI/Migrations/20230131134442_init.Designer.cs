@@ -3,6 +3,7 @@ using KWS.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KWSAPI.Migrations
 {
     [DbContext(typeof(KWSDBContext))]
-    partial class KWSDBContextModelSnapshot : ModelSnapshot
+    [Migration("20230131134442_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,9 +32,11 @@ namespace KWSAPI.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Batch")
+                        .IsRequired()
                         .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("Cgpa")
+                        .IsRequired()
                         .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("MemberName")
@@ -41,9 +45,11 @@ namespace KWSAPI.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("PassingYear")
+                        .IsRequired()
                         .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("Roll")
+                        .IsRequired()
                         .HasColumnType("nvarchar(20)");
 
                     b.HasKey("Id");
@@ -51,7 +57,7 @@ namespace KWSAPI.Migrations
                     b.ToTable("MemberMasters");
                 });
 
-            modelBuilder.Entity("KWSAPI.Models.UserInfo", b =>
+            modelBuilder.Entity("KWSAPI.Models.UserAuthen", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -60,26 +66,32 @@ namespace KWSAPI.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("varchar(100)");
 
                     b.Property<string>("Password")
+                        .IsRequired()
                         .HasColumnType("varchar(50)");
 
                     b.Property<string>("Phone")
+                        .IsRequired()
                         .HasColumnType("varchar(100)");
 
                     b.Property<string>("Role")
+                        .IsRequired()
                         .HasColumnType("varchar(100)");
 
                     b.Property<string>("Secretkey")
+                        .IsRequired()
                         .HasColumnType("varchar(300)");
 
                     b.Property<string>("UserName")
+                        .IsRequired()
                         .HasColumnType("varchar(100)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserInfo");
+                    b.ToTable("User");
                 });
 #pragma warning restore 612, 618
         }

@@ -6,6 +6,6 @@ namespace KWS.Models
   public interface IKWSDBContext
   {
 	DbSet<MemberMaster> MemberMasters { get; set; }
-	DbSet<UserAuthen> User { get; set; }
+	DbSet<UserInfo> UserInfo { get; set; }
   }
 }

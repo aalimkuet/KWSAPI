@@ -10,14 +10,14 @@ namespace KWS.Models
         [Required]
         [StringLength(100)]
         [Column(TypeName="nvarchar(100)")]
-        public string MemberName { get; set; }
+        public string? MemberName { get; set; }
         [Column(TypeName = "nvarchar(20)")]
-        public string Roll { get; set; }
+        public string? Roll { get; set; }
         [Column(TypeName = "nvarchar(20)")]
-        public string Batch { get; set; }
+        public string? Batch { get; set; }
         [Column(TypeName = "nvarchar(10)")]
-        public string PassingYear { get; set; }
+        public string? PassingYear { get; set; }
         [Column(TypeName = "nvarchar(10)")]
-        public string Cgpa { get; set; }
+        public string? Cgpa { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using KWS.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KWSAPI.Migrations
 {
     [DbContext(typeof(KWSDBContext))]
-    partial class KWSDBContextModelSnapshot : ModelSnapshot
+    [Migration("20230202085507_table name change")]
+    partial class tablenamechange
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,7 +53,7 @@ namespace KWSAPI.Migrations
                     b.ToTable("MemberMasters");
                 });
 
-            modelBuilder.Entity("KWSAPI.Models.UserInfo", b =>
+            modelBuilder.Entity("KWSAPI.Models.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -79,7 +81,7 @@ namespace KWSAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserInfo");
+                    b.ToTable("User");
                 });
 #pragma warning restore 612, 618
         }

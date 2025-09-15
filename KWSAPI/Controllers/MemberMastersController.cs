@@ -1,19 +1,16 @@
 ﻿#nullable disable
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using KWS.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
+using Microsoft.EntityFrameworkCore;
 
 namespace KWSAPI.Controllers
-{
+{ 
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
+    [EnableRateLimiting("ApiPolicy")]
     public class MemberMastersController : ControllerBase
     {
         private readonly KWSDBContext _context;
@@ -68,7 +65,9 @@ namespace KWSAPI.Controllers
                 }
             }
 
-            return NoContent();
+            var res = new { };
+
+            return Ok( new { Message = "Updated Successfully!", code = 200 });
         }
         [HttpPost("Create")]
         public async Task<ActionResult<MemberMaster>> PostMemberMaster(MemberMaster memberMaster)
